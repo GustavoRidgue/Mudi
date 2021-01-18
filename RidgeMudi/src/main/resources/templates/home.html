@@ -1,26 +1,48 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta chars charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+          crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
 </head>
 <body>
-    <section th:each="pedido : ${pedidos}">
-        <div>
-            <div th:text="${pedido.nomeProduto}">Nome do Produto</div>
-            <div>Valor: <span th:text="${pedido.valorNegociado}">200,99</span></div>
-            <div>Data da entrega: <span th:text="${pedido.dataDaEntrega}">10/02/2020</span></div>
-        </div>
+    <article>
+        <section th:each="pedido : ${pedidos}">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 th:text="${pedido.nomeProduto}">Nome do Produto</h1>
+                    </div>
 
-        <div>Produto</div>
-        <div> <input th:value="${pedido.urlProduto}" value="url do produto" /></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="texto col-12 col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <p>Price: <span th:text="${pedido.valorNegociado}">200,99</span></p>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p>Delivery date: <span th:text="${pedido.dataDaEntrega}">10/02/2020</span></p>
+                                    </div>
+                                </div>
+                                <p>Product link:</p>
+                                <p> <input th:value="${pedido.urlProduto}" class="form-control" value="url do produto" /></p>
 
-        <div>Descrição</div>
-        <div>
-            <textarea th:text="${pedido.descricao}">descrição do pedido</textarea>
-        </div>
+                                <p>Description:</p>
+                                <textarea th:text="${pedido.descricao}" class="form-control">descrição do pedido</textarea>
+                            </div>
 
-        <div>
-            <img class="img-thumbnail" th:src="${pedido.urlImagem}" src="" />
-        </div>
-    </section>
+                            <div class="produto-imagem col-12 col-sm-4 mt-2">
+                                <img class="img-thumbnail" th:src="${pedido.urlImagem}" src="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
 </body>
 </html>
